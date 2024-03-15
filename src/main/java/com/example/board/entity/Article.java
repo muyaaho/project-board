@@ -23,7 +23,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String user;
+    private String userName;
     @Column
     private String title;
     @Column
