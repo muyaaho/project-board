@@ -7,5 +7,6 @@ import lombok.ToString;
 @ToString
 public class ArticleForm {
     private String title;
+    private String user;
     private String content;
 }
