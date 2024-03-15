@@ -23,9 +23,9 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String title;
-    @Column
     private String user;
+    @Column
+    private String title;
     @Column
     private String content;
 }
