@@ -1,0 +1,1 @@
+INSERT INTO article(name, title, content) VALUES('러너', '아침 달리기', '아침에 달렸는데 미세먼지가 많아서 목이 아프네요')
