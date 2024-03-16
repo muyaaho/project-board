@@ -43,4 +43,9 @@ public class BoardController {
 
         return "board/show";
     }
+
+    @GetMapping("/board")
+    public String index() {
+        return "";
+    }
 }
