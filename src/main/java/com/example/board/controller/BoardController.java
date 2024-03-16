@@ -32,7 +32,7 @@ public class BoardController {
 
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
-        return "";
+        return "redirect:/board/" + saved.getId();
     }
 
     @GetMapping("/board/{id}")
@@ -45,7 +45,7 @@ public class BoardController {
         return "board/show";
     }
 
-    @GetMapping("/board")
+    @GetMapping(value = {"/board", "/board/"})
     public String index(Model model) {
         List<Article> articleEntityList = articleRepository.findAll();
         model.addAttribute("articleList", articleEntityList);
