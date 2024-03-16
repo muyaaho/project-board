@@ -3,6 +3,7 @@ package com.example.board.controller;
 import com.example.board.dto.ArticleForm;
 import com.example.board.entity.Article;
 import com.example.board.repository.ArticleRepository;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,9 @@ public class BoardController {
     }
 
     @GetMapping("/board")
-    public String index() {
-        return "";
+    public String index(Model model) {
+        List<Article> articleEntityList = articleRepository.findAll();
+        model.addAttribute("articleList", articleEntityList);
+        return "board/index";
     }
 }
