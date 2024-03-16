@@ -1,0 +1,24 @@
+{{>layouts/header}}
+<form class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col" colspan="3">제목</th>
+            <th scope="col">작성자</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        {{#articleList}}
+            <tr>
+                <th scope="row">{{id}}</th>
+                <td colspan="3">{{title}}</td>
+                <td>{{name}}</td>
+            </tr>
+        {{/articleList}}
+        </tbody>
+    </table>
+
+</form>
+
+{{>layouts/footer}}
