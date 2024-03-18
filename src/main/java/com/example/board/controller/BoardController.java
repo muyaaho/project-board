@@ -71,6 +71,6 @@ public class BoardController {
         if (target != null) {
             postRepository.save(postEntity);
         }
-        return "";
+        return "redirect:/board/" + postEntity.getId();
     }
 }
