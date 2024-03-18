@@ -38,9 +38,8 @@ public class BoardController {
     @GetMapping("/board/{id}")
     public String show(@PathVariable Long id, Model model) {
         log.info("id = " + id);
-        
+
         Article articleEntity = articleRepository.findById(id).orElse(null);
-        // entity의 content를 <br>로 바꾸기
         articleEntity.changeNewLine();
         log.info(String.valueOf(articleEntity));
         model.addAttribute("board", articleEntity);
