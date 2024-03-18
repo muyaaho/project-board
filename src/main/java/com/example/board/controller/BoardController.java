@@ -53,4 +53,11 @@ public class BoardController {
         model.addAttribute("articleList", articleEntityList);
         return "board/index";
     }
+
+    @GetMapping("/board/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        model.addAttribute("article", articleEntity);
+        return "board/edit";
+    }
 }
