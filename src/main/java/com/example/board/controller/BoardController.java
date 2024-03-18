@@ -60,4 +60,10 @@ public class BoardController {
         model.addAttribute("post", postEntity);
         return "board/edit";
     }
+
+    @PostMapping("/board/update")
+    public String update(PostForm form) {
+        log.info(form.toString());
+        return "";
+    }
 }
