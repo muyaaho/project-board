@@ -1,7 +1,7 @@
 package com.example.board.controller;
 
-import com.example.board.dto.ArticleForm;
-import com.example.board.entity.Article;
+import com.example.board.dto.PostForm;
+import com.example.board.entity.Post;
 import com.example.board.repository.ArticleRepository;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -24,13 +24,13 @@ public class BoardController {
     }
 
     @PostMapping("/board/create")
-    public String createArticle(ArticleForm form) {
+    public String createArticle(PostForm form) {
         log.info(form.toString());
 
-        Article article = form.toEntity();
-        log.info(article.toString());
+        Post post = form.toEntity();
+        log.info(post.toString());
 
-        Article saved = articleRepository.save(article);
+        Post saved = articleRepository.save(post);
         log.info(saved.toString());
         return "redirect:/board/" + saved.getId();
     }
@@ -39,25 +39,25 @@ public class BoardController {
     public String show(@PathVariable Long id, Model model) {
         log.info("id = " + id);
 
-        Article articleEntity = articleRepository.findById(id).orElse(null);
-        articleEntity.changeNewLine();
-        log.info(String.valueOf(articleEntity));
-        model.addAttribute("board", articleEntity);
+        Post postEntity = articleRepository.findById(id).orElse(null);
+        postEntity.changeNewLine();
+        log.info(String.valueOf(postEntity));
+        model.addAttribute("board", postEntity);
 
         return "board/show";
     }
 
     @GetMapping(value = {"/board", "/board/"})
     public String index(Model model) {
-        List<Article> articleEntityList = articleRepository.findAll();
-        model.addAttribute("articleList", articleEntityList);
+        List<Post> postEntityList = articleRepository.findAll();
+        model.addAttribute("PostList", postEntityList);
         return "board/index";
     }
 
     @GetMapping("/board/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        Article articleEntity = articleRepository.findById(id).orElse(null);
-        model.addAttribute("article", articleEntity);
+        Post postEntity = articleRepository.findById(id).orElse(null);
+        model.addAttribute("post", postEntity);
         return "board/edit";
     }
 }
