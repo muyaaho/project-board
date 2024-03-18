@@ -1,5 +1,6 @@
 package com.example.board.service;
 
+import com.example.board.dto.PostForm;
 import com.example.board.entity.Post;
 import com.example.board.repository.PostRepository;
 import java.util.List;
@@ -17,5 +18,13 @@ public class BoardService {
 
     public Post show(Long id) {
         return postRepository.findById(id).orElse(null);
+    }
+
+    public Post create(PostForm dto) {
+        Post post = dto.toEntity();
+        if (post.getId() != null) {
+            return null;
+        }
+        return postRepository.save(post);
     }
 }
