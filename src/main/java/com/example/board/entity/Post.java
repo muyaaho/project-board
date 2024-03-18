@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Entity
-public class Article {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

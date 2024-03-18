@@ -1,8 +1,8 @@
 package com.example.board.controller;
 
-import com.example.board.dto.ArticleForm;
-import com.example.board.entity.Article;
-import com.example.board.repository.ArticleRepository;
+import com.example.board.dto.PostForm;
+import com.example.board.entity.Post;
+import com.example.board.repository.PostRepository;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class BoardController {
     @Autowired
-    private ArticleRepository articleRepository;
+    private PostRepository postRepository;
 
     @GetMapping("/board/new")
     public String newArticleForm() {
@@ -24,13 +24,13 @@ public class BoardController {
     }
 
     @PostMapping("/board/create")
-    public String createArticle(ArticleForm form) {
+    public String createArticle(PostForm form) {
         log.info(form.toString());
 
-        Article article = form.toEntity();
-        log.info(article.toString());
+        Post post = form.toEntity();
+        log.info(post.toString());
 
-        Article saved = articleRepository.save(article);
+        Post saved = postRepository.save(post);
         log.info(saved.toString());
         return "redirect:/board/" + saved.getId();
     }
@@ -38,20 +38,39 @@ public class BoardController {
     @GetMapping("/board/{id}")
     public String show(@PathVariable Long id, Model model) {
         log.info("id = " + id);
-        
-        Article articleEntity = articleRepository.findById(id).orElse(null);
-        // entity의 content를 <br>로 바꾸기
-        articleEntity.changeNewLine();
-        log.info(String.valueOf(articleEntity));
-        model.addAttribute("board", articleEntity);
+
+        Post postEntity = postRepository.findById(id).orElse(null);
+        postEntity.changeNewLine();
+        log.info(String.valueOf(postEntity));
+        model.addAttribute("board", postEntity);
 
         return "board/show";
     }
 
     @GetMapping(value = {"/board", "/board/"})
     public String index(Model model) {
-        List<Article> articleEntityList = articleRepository.findAll();
-        model.addAttribute("articleList", articleEntityList);
+        List<Post> postEntityList = postRepository.findAll();
+        model.addAttribute("postList", postEntityList);
         return "board/index";
+    }
+
+    @GetMapping("/board/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        Post postEntity = postRepository.findById(id).orElse(null);
+        model.addAttribute("post", postEntity);
+        return "board/edit";
+    }
+
+    @PostMapping("/board/update")
+    public String update(PostForm form) {
+        log.info(form.toString());
+        Post postEntity = form.toEntity();
+        log.info(postEntity.toString());
+
+        Post target = postRepository.findById(postEntity.getId()).orElse(null);
+        if (target != null) {
+            postRepository.save(postEntity);
+        }
+        return "redirect:/board/" + postEntity.getId();
     }
 }

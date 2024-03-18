@@ -1,0 +1,28 @@
+{{>layouts/header}}
+
+<form class="container" action="/board/update" method="post">
+    <input name="id" type="hidden" value="{{id}}">
+    <div class="mt-5">
+        <h2>글쓰기</h2>
+        <hr>
+    </div>
+    <div class="mb-3">
+        <label for="titleInput" class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" id="titleInput" value="{{post.title}}">
+    </div>
+    <div class="mb-3">
+        <label for="userNameInput" class="form-label">작성자</label>
+        <input type="text" class="form-control" name="name" id="userNameInput" value="{{post.name}}">
+    </div>
+    <div class="mb-3">
+        <label for="contentInput" class="form-label">내용</label>
+        <textarea class="form-control" rows="5" name="content" id="contentInput">{{post.content}}</textarea>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="/board/{{post.id}}" class="btn btn-danger me-md-2">돌아가기</a>
+        <button class="btn btn-primary" type="submit">등록</button>
+    </div>
+
+</form>
+
+{{>layouts/footer}}
