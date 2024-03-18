@@ -47,4 +47,4 @@
 
 ## 수정
 - [ ] title과 user 위치 변경
-- [ ] post, board 로 변경
+- [x] post, board 로 변경

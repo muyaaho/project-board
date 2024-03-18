@@ -50,7 +50,7 @@ public class BoardController {
     @GetMapping(value = {"/board", "/board/"})
     public String index(Model model) {
         List<Post> postEntityList = postRepository.findAll();
-        model.addAttribute("PostList", postEntityList);
+        model.addAttribute("postList", postEntityList);
         return "board/index";
     }
 
