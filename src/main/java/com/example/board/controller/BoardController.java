@@ -2,7 +2,7 @@ package com.example.board.controller;
 
 import com.example.board.dto.PostForm;
 import com.example.board.entity.Post;
-import com.example.board.repository.ArticleRepository;
+import com.example.board.repository.PostRepository;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class BoardController {
     @Autowired
-    private ArticleRepository articleRepository;
+    private PostRepository postRepository;
 
     @GetMapping("/board/new")
     public String newArticleForm() {
@@ -30,7 +30,7 @@ public class BoardController {
         Post post = form.toEntity();
         log.info(post.toString());
 
-        Post saved = articleRepository.save(post);
+        Post saved = postRepository.save(post);
         log.info(saved.toString());
         return "redirect:/board/" + saved.getId();
     }
@@ -39,7 +39,7 @@ public class BoardController {
     public String show(@PathVariable Long id, Model model) {
         log.info("id = " + id);
 
-        Post postEntity = articleRepository.findById(id).orElse(null);
+        Post postEntity = postRepository.findById(id).orElse(null);
         postEntity.changeNewLine();
         log.info(String.valueOf(postEntity));
         model.addAttribute("board", postEntity);
@@ -49,14 +49,14 @@ public class BoardController {
 
     @GetMapping(value = {"/board", "/board/"})
     public String index(Model model) {
-        List<Post> postEntityList = articleRepository.findAll();
+        List<Post> postEntityList = postRepository.findAll();
         model.addAttribute("PostList", postEntityList);
         return "board/index";
     }
 
     @GetMapping("/board/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        Post postEntity = articleRepository.findById(id).orElse(null);
+        Post postEntity = postRepository.findById(id).orElse(null);
         model.addAttribute("post", postEntity);
         return "board/edit";
     }
@@ -64,6 +64,13 @@ public class BoardController {
     @PostMapping("/board/update")
     public String update(PostForm form) {
         log.info(form.toString());
+        Post postEntity = form.toEntity();
+        log.info(postEntity.toString());
+
+        Post target = postRepository.findById(postEntity.getId()).orElse(null);
+        if (target != null) {
+            postRepository.save(postEntity);
+        }
         return "";
     }
 }
