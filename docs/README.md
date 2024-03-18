@@ -37,7 +37,7 @@
 - [ ] Crud에 대한 REST API
   - [x] GET 구현
   - [x] POST 구현
-  - [ ] PATCH 구현
+  - [x] PATCH 구현
   - [ ] DELETE 구현
 - [ ] 더미데이터 삭제
 - [ ] 댓글 기능 구현

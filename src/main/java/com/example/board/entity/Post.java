@@ -33,4 +33,14 @@ public class Post {
     public void changeNewLine() {
         content = content.replaceAll("\n", "<br>");
     }
+
+    public void patch(Post post) {
+        if (post.title != null)
+            this.title = post.title;
+        if (post.username != null)
+            this.username = post.username;
+        if (post.content != null)
+            this.content = post.content;
+
+    }
 }
