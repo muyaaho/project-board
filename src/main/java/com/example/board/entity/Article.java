@@ -28,4 +28,8 @@ public class Article {
     private String title;
     @Column
     private String content;
+
+    public void changeNewLine() {
+        content = content.replaceAll("\n", "<br>");
+    }
 }
