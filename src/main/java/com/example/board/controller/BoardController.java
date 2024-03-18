@@ -73,4 +73,17 @@ public class BoardController {
         }
         return "redirect:/board/" + postEntity.getId();
     }
+
+    @GetMapping("/board/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        log.info("삭제 요청이 들어왔습니다.");
+
+        Post target = postRepository.findById(id).orElse(null);
+        log.info(target.toString());
+
+        if (target != null) {
+            postRepository.delete(target);
+        }
+        return "redirect:/board";
+    }
 }
