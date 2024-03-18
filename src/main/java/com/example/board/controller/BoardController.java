@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
@@ -75,7 +76,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, RedirectAttributes rttr) {
         log.info("삭제 요청이 들어왔습니다.");
 
         Post target = postRepository.findById(id).orElse(null);
@@ -83,6 +84,7 @@ public class BoardController {
 
         if (target != null) {
             postRepository.delete(target);
+            rttr.addFlashAttribute("msg", "삭제되었습니다.");
         }
         return "redirect:/board";
     }
