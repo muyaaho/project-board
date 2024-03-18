@@ -13,3 +13,10 @@
         <a class="navbar-brand" href="/board/new">게시판</a>
     </div>
 </nav>
+
+{{#msg}}
+    <div class="alert alert-success alert-dismissible fade show alert-padding-y-2" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/msg}}
