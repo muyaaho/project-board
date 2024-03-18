@@ -47,4 +47,13 @@ public class BoardService {
         Post updated = postRepository.save(target);
         return updated;
     }
+
+    public Post delete(Long id) {
+        Post target = postRepository.findById(id).orElse(null);
+        if (target == null) {
+            return null;
+        }
+        postRepository.delete(target);
+        return target;
+    }
 }
