@@ -34,12 +34,11 @@
   - [x] delete 버튼 추가
   - [x] delete 요청 받아 데이터 삭제
   - [x] 삭제 완료 메시지
-- [x] Crud에 대한 REST API
+- [ ] Crud에 대한 REST API
   - [x] GET 구현
   - [x] POST 구현
   - [x] PATCH 구현
-  - [x] DELETE 구현
-  - [ ] 삼항연산자 없애기
+  - [ ] DELETE 구현
 - [ ] 더미데이터 삭제
 - [ ] 댓글 기능 구현
 
