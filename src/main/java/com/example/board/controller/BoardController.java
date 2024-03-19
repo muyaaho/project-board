@@ -3,6 +3,7 @@ package com.example.board.controller;
 import com.example.board.dto.PostForm;
 import com.example.board.entity.Post;
 import com.example.board.repository.PostRepository;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class BoardController {
 
     @PostMapping("/board/create")
     public String createArticle(PostForm form) {
-        log.info(form.toString());
+        log.info("dto: {}",form.toString());
 
         Post post = form.toEntity();
-        log.info(post.toString());
+        log.info("post: {}",post.toString());
 
         Post saved = postRepository.save(post);
-        log.info(saved.toString());
+        log.info("saved: {}",saved.toString());
         return "redirect:/board/" + saved.getId();
     }
 
@@ -48,9 +49,11 @@ public class BoardController {
         return "board/show";
     }
 
+
+
     @GetMapping(value = {"/board", "/board/"})
     public String index(Model model) {
-        List<Post> postEntityList = postRepository.findAll();
+        ArrayList<Post> postEntityList = postRepository.findAll();
         model.addAttribute("postList", postEntityList);
         return "board/index";
     }

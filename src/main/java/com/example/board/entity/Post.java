@@ -1,7 +1,6 @@
 package com.example.board.entity;
 
 import jakarta.persistence.Column;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,13 +22,25 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String name;
-    @Column
     private String title;
+
+    @Column
+    private String username;
+
     @Column
     private String content;
 
     public void changeNewLine() {
         content = content.replaceAll("\n", "<br>");
+    }
+
+    public void patch(Post post) {
+        if (post.title != null)
+            this.title = post.title;
+        if (post.username != null)
+            this.username = post.username;
+        if (post.content != null)
+            this.content = post.content;
+
     }
 }
