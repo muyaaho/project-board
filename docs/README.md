@@ -64,3 +64,4 @@
 - [ ] name에 null 허용하지 않기
 - [ ] name 후보키로 설정하기
 - [ ] 게시글 삭제 될 때 alert로 알람이 뜨도록 변경
+- [ ] post의 username, comment의 nickname 통일
