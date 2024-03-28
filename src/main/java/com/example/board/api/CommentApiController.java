@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,4 +32,14 @@ public class CommentApiController {
         CommentDto createdDto = commentService.create(articleId, dto);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
+
+    // 3. 댓글 수정
+    @PatchMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> update(@PathVariable Long id,
+                                             @RequestBody CommentDto dto) {
+        CommentDto updateDto = commentService.update(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updateDto);
+    }
+
+    // 4. 댓글 삭제
 }

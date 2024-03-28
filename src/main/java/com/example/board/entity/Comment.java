@@ -42,4 +42,14 @@ public class Comment {
                 dto.getNickname(),
                 dto.getBody());
     }
+
+    public void patch(CommentDto dto) {
+        if (this.id != dto.getId())
+            throw new IllegalStateException("댓글 수정 실패, id가 잘못됐습니다.");
+
+        if (dto.getNickname() != null)
+            this.nickname = dto.getNickname();
+        if (dto.getBody() != null)
+            this.body = dto.getBody();
+    }
 }
