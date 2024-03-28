@@ -2,8 +2,10 @@ package com.example.board.service;
 
 import com.example.board.dto.CommentDto;
 import com.example.board.entity.Comment;
+import com.example.board.entity.Post;
 import com.example.board.repository.CommentRepository;
 import com.example.board.repository.PostRepository;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,5 +24,14 @@ public class CommentService {
                 .stream()
                 .map(CommentDto::createCommentDto)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public CommentDto create(Long postId, CommentDto dto) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("댓글 생성을 실패했습니다. " + "해당 게시글이 없습니다."));
+        Comment comment = Comment.createComment(dto, post);
+        Comment created = commentRepository.save(comment);
+        return CommentDto.createCommentDto(created);
     }
 }
