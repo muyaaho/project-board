@@ -1,0 +1,18 @@
+<div id="comments-list" class="mt-5">
+    {{#commentDtos}}
+        <div class="card mb-4" id="comments-{{id}}">
+
+            <div class="card-body">
+                <p>{{body}}</p>
+
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <i class="fi fi-br-user"></i>
+                        <p class="small mb-0 ms-2">{{nickname}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {{/commentDtos}}
+</div>
