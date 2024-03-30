@@ -28,6 +28,16 @@ const comment = {
 };
 console.log(comment);
 
+// fetch() - 비동기 통신을 위한 API
+const url = "/api/board/" + comment.postId + "/comments";
+fetch(url, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(comment)
+});
+
 
 });
 }
