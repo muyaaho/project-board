@@ -2,15 +2,14 @@
 
     <input type="text" id="new-comment-nickname" class="form-control mb-1" placeholder="닉네임" />
     <textarea type="text" class="form-control" placeholder="내용을 입력하세요" id="new-comment-body" rows="3"></textarea>
-    {{#post}}
+    {{#board}}
         <input type="hidden" id="new-comment-post-id" value="{{id}}">
-    {{/post}}
+    {{/board}}
     <div class="form-group">
     <button type="button" class="btn float-end" id="comment-create-btn">등록</button>
     </div>
 
 </div>
-
 
 <script>
 {
