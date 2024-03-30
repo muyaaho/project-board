@@ -1,10 +1,8 @@
 package com.example.board.controller;
 
-import com.example.board.dto.CommentDto;
 import com.example.board.dto.PostForm;
 import com.example.board.entity.Post;
 import com.example.board.repository.PostRepository;
-import com.example.board.service.CommentService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BoardController {
     @Autowired
     private PostRepository postRepository;
-    @Autowired
-    private CommentService commentService;
 
     @GetMapping("/board/new")
     public String newArticleForm() {
@@ -46,11 +42,9 @@ public class BoardController {
         log.info("id = " + id);
 
         Post postEntity = postRepository.findById(id).orElse(null);
-        List<CommentDto> commentsDtos = commentService.comments(id);
         postEntity.changeNewLine();
         log.info(String.valueOf(postEntity));
         model.addAttribute("board", postEntity);
-        model.addAttribute("commentDtos", commentsDtos);
 
         return "board/show";
     }
