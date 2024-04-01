@@ -20,7 +20,9 @@
                            data-bs-body="{{body}}"
                            data-bs-post-id="{{postId}}">수정</button>
                         <button type="button"
-                           class="btn btn-outline-danger btn-sm comment-delete-btn">삭제</button>
+                                class="btn btn-outline-danger btn-sm comment-delete-btn"
+                                data-comment-id="{{id}}"
+                        >삭제</button>
                     </div>
                 </div>
             </div>
@@ -128,8 +130,10 @@
 {
     const commentDeleteBtns = document.querySelectorAll(".comment-delete-btn");
     commentDeleteBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            console.log("삭제 버튼이 클릭됐습니다.");
+        btn.addEventListener("click", (event) => {
+            const commentDeleteBtn = event.target;
+            const commentId = commentDeleteBtn.getAttribute("data-comment-id");
+            console.log(`삭제 버튼 클릭: ${commentId}번 댓글`);
         });
     });
 }
