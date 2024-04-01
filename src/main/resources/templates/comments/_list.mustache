@@ -10,16 +10,18 @@
                         <i class="fi fi-br-user"></i>
                         <p class="small mb-0 ms-2">{{nickname}}</p>
                     </div>
-                    <button type="button"
-                            class="btn btn-outline-success btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#comment-edit-modal"
-                            data-bs-id="{{id}}"
-                            data-bs-nickname="{{nickname}}"
-                            data-bs-body="{{body}}"
-                            data-bs-post-id="{{postId}}"
-                    >수정</button>
-
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button"
+                           class="btn btn-outline-success btn-sm"
+                           data-bs-toggle="modal"
+                           data-bs-target="#comment-edit-modal"
+                           data-bs-id="{{id}}"
+                           data-bs-nickname="{{nickname}}"
+                           data-bs-body="{{body}}"
+                           data-bs-post-id="{{postId}}">수정</button>
+                        <button type="button"
+                           class="btn btn-outline-danger btn-sm">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
