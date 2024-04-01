@@ -13,7 +13,12 @@
                     <button type="button"
                             class="btn btn-outline-success btn-sm"
                             data-bs-toggle="modal"
-                            data-bs-target="#comment-edit-modal">수정</button>
+                            data-bs-target="#comment-edit-modal"
+                            data-bs-id="{{id}}"
+                            data-bs-nickname="{{nickname}}"
+                            data-bs-body="{{body}}"
+                            data-bs-post-id="{{postId}}"
+                    >수정</button>
 
                 </div>
             </div>
@@ -58,3 +63,28 @@
         </div>
     </div>
 </div>
+
+<!--모달 이벤트 처리-->
+<script>
+{
+    // 모달 요소 선택
+    const commentEditModal = document.querySelector("#comment-edit-modal");
+    // 모달 이벤트 감지
+    commentEditModal.addEventListener("show.bs.modal", function(event) {
+        // 1. 트리거 버튼 선택
+        const triggerBtn = event.relatedTarget;
+        // 2. 데이터 가져오기
+        const id = triggerBtn.getAttribute("data-bs-id");
+        const nickname = triggerBtn.getAttribute("data-bs-nickname");
+        const body = triggerBtn.getAttribute("data-bs-body");
+        const postId = triggerBtn.getAttribute("data-bs-post-id");
+        // 3. 수정 폼에 데이터 반영
+        document.querySelector("#edit-comment-nickname").value = nickname;
+        document.querySelector("#edit-comment-body").value = body;
+        document.querySelector("#edit-comment-id").value = id;
+        document.querySelector("#edit-comment-post-id").value = postId;
+
+
+    });
+}
+</script>
