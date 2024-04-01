@@ -126,9 +126,11 @@
 <!--댓글 삭제-->
 <script>
 {
-    const commentDeleteBtn = document.querySelector(".comment-delete-btn");
-    commentDeleteBtn.addEventListener("click", function() {
-        console.log("삭제 버튼이 클릭됐습니다.");
+    const commentDeleteBtns = document.querySelectorAll(".comment-delete-btn");
+    commentDeleteBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            console.log("삭제 버튼이 클릭됐습니다.");
+        });
     });
 }
 </script>
