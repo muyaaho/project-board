@@ -83,7 +83,7 @@
 - [x] post, board 로 변경
 - [ ] 테스트 코드 추가하면 삼항연산자 없애기
 - [ ] name에 null 허용하지 않기
-- [ ] name 후보키로 설정하기
+- [x] comment의 post_id를 외래키로 지정
 - [ ] 게시글 삭제 될 때 alert로 알람이 뜨도록 변경
 - [ ] post의 username, comment의 nickname 통일
 - [x] 화면을 작게 board/{postId}에서 창을 작게 했을 때 댓글 창 크기 맞추기
