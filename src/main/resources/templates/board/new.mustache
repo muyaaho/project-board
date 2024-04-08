@@ -15,6 +15,7 @@
     <div class="mb-3">
         <label for="contentInput" class="form-label">내용</label>
         <textarea class="form-control" rows="5" name="content" id="contentInput"></textarea>
+
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a href="/board" class="btn btn-danger me-md-2">돌아가기</a>
@@ -22,4 +23,17 @@
     </div>
 
 </form>
+<script>
+    {
+        const $textarea = document.querySelector("#contentInput");
+        $textarea.oninput = (event) => {
+            const $target = event.target;
+
+            $target.style.height = 'auto';
+            $target.style.height = $target.scrollHeight + 'px';
+        };
+    }
+
+</script>
+
 {{>layouts/footer}}
